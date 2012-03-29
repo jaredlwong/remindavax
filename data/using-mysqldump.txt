@@ -1,0 +1,4 @@
+This document aims to help you setup a mysql database that will work with this project.
+1. create a database called `remindavax` in mysql
+2. create a user `remindavax` with password `remindavax!!` with `USAGE` privleges from `localhost` on the database `remindavax`
+3. import the remindavax-mysqldump-*.sql into the remindavax database

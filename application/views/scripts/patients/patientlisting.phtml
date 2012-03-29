@@ -1,0 +1,21 @@
+<table border="1" cellpadding="10">
+<?php
+    $patients = $this->patients;
+    foreach($patients as $patient){
+        $patientArray = $patient->toArray();
+        echo "<tr>";
+        foreach(array_slice($patientArray,1,4) as $info){
+            echo "<td>" . $info . "</td>";
+        }
+        echo "<td>";
+        echo "<a href=/patients/edit?id=" . $patientArray["id"] . ">";
+        echo "Edit" . "</a>" . "</td>";
+        
+        echo "<td>";
+        echo "<a href=/schedule/edit?id=" . $patientArray["id"] . ">";
+        echo "Schedules" . "</a>" . "</td>";
+        
+        echo "</tr>";
+    }
+?>
+</table>

@@ -1,0 +1,16 @@
+<?php
+    $user = $this->currentUser;
+    $string = "Welcome";
+    if( Null !== ($p = $user->getFirstName())) {
+        $string = $string . " " . $p;
+    }
+    if( Null !== ($p = $user->getLastName())) {
+        $string = $string . " " . $p;
+    }
+    echo "<div id=\"user-profile-welcome\">" . $string . "</div>";
+?>
+<a href="<?php echo $this->url(
+    array('controller'=>'profile','action'=>'settings'),
+    'default',
+    true) ?>">Settings</a>
+<hr />

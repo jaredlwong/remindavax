@@ -1,0 +1,11 @@
+<?php
+$msg = '';
+$msg .= 'This is a schedule for <b>';
+$msg .= $this->patient->getFirstName() . ' ';
+$msg .= $this->patient->getLastName() . '</b>.';
+echo $msg;?>
+<body class="tundra">
+<?php
+echo $this->schedule;
+?>
+</body>

@@ -1,0 +1,54 @@
+<h2>Treatments for <?php 
+echo $this->patient->getFirstName() . ' ' . $this->patient->getLastName()
+?></h2>
+
+<a href="<?php
+echo '/patients/' . $this->patient->getId() . '/treatments/new';
+?>">Add New Treatment</a>
+<table border="1" cellpadding="10" id="table-treatments">
+    <thead>
+        <tr>
+          <td></td>
+          <td>Start Date</td>
+          <td>End Date</td>
+          <td>Repeat Period</td>
+          <td>Repeat Interval</td>
+          <td>Type</td>
+        </tr>
+      </thead>
+<?php
+$treatments = $this->treatments;
+$treatmentsTable = '<tbody>';
+foreach($treatments as $treatment){
+    $treatmentData = $treatment->toArray();
+    unset($treatmentData['id']);
+    unset($treatmentData['ownerId']);
+    $treatmentsTable .= "<tr>";
+    
+    $startDate = date_parse_from_format("Y-m-d", $treatmentData['startDate']);
+    $treatmentData['startDate'] = $startDate['month'] . '/' . $startDate['day'] . '/' . $startDate['year'];
+    $endDate = date_parse_from_format("Y-m-d", $treatmentData['endDate']);
+    $treatmentData['endDate'] = $endDate['month'] . '/' . $endDate['day'] . '/' . $endDate['year'];
+    $lookup = array('Daily','Weekly','Monthly','Yearly');
+    $treatmentData['repeatPeriod'] = $lookup[$treatmentData['repeatPeriod']];
+    
+    $overview = '<a href=/patients/' . $this->patient->getId() . '/treatments/' . $treatment->getId();
+    $overview .= '>Overview</a>';
+    array_unshift($treatmentData,$overview);
+    
+    $blarg = '<a href=/patients/' . $this->patient->getId() . '/treatments/' . $treatment->getId();
+    $blarg .= '/edit>Edit</a>';
+    array_push($treatmentData,$blarg);
+    
+    foreach($treatmentData as $value) {
+        $treatmentsTable .= "<td>";
+        $treatmentsTable .= $value;
+        $treatmentsTable .= "</td>";
+    }
+    
+    $treatmentsTable .= "</tr>";
+}
+$treatmentsTable .= '</tbody>';
+echo $treatmentsTable;
+?>
+</table>

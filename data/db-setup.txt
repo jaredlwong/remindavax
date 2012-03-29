@@ -1,0 +1,63 @@
+MainUsers
++-----------+--------------+------+-----+---------+----------------+
+| Field     | Type         | Null | Key | Default | Extra          |
++-----------+--------------+------+-----+---------+----------------+
+| id        | int(11)      | NO   | PRI | NULL    | auto_increment |
+| email     | varchar(320) | NO   |     | NULL    |                |
+| password  | varchar(80)  | NO   |     | NULL    |                |
+| firstName | varchar(100) | YES  |     | NULL    |                |
+| lastName  | varchar(100) | YES  |     | NULL    |                |
+| phone     | varchar(100) | YES  |     | NULL    |                |
++-----------+--------------+------+-----+---------+----------------+
+
+Patients
++---------------------+---------------------+------+-----+----------+----------------+
+| Field               | Type                | Null | Key | Default  | Extra          |
++---------------------+---------------------+------+-----+----------+----------------+
+| id                  | int(11)             | NO   | PRI | NULL     | auto_increment |
+| firstName           | varchar(100)        | NO   |     | NULL     |                |
+| lastName            | varchar(100)        | NO   |     | NULL     |                |
+| phone               | varchar(100)        | NO   |     | NULL     |                |
+| email               | varchar(320)        | YES  |     | NULL     |                |
+| earlyReminderTime   | time                | NO   |     | 08:00:00 |                |
+| primaryResponseTime | time                | NO   |     | 13:00:00 |                |
+| age                 | tinyint(3) unsigned | YES  |     | NULL     |                |
+| gender              | tinyint(3) unsigned | YES  |     | NULL     |                |
+| ownerId             | int(11)             | NO   | MUL | NULL     |                |
++---------------------+---------------------+------+-----+----------+----------------+
+
+Treatments
++----------------+---------------------+------+-----+------------+----------------+
+| Field          | Type                | Null | Key | Default    | Extra          |
++----------------+---------------------+------+-----+------------+----------------+
+| id             | int(11)             | NO   | PRI | NULL       | auto_increment |
+| startDate      | date                | NO   |     | 1000-01-01 |                |
+| endDate        | date                | NO   |     | 9999-12-31 |                |
+| repeatPeriod   | int(11)             | NO   |     | NULL       |                |
+| repeatInterval | int(11)             | NO   |     | NULL       |                |
+| type           | tinyint(3) unsigned | NO   |     | NULL       |                |
+| ownerId        | int(11)             | NO   | MUL | NULL       |                |
++----------------+---------------------+------+-----+------------+----------------+
+
+TreatmentTypes
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| id    | int(11)      | NO   | PRI | NULL    | auto_increment |
+| title | varchar(255) | NO   |     | NULL    |                |
+| type  | text         | NO   |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+
+Queue
++---------------------+---------------------+------+-----+---------+----------------+
+| Field               | Type                | Null | Key | Default | Extra          |
++---------------------+---------------------+------+-----+---------+----------------+
+| id                  | int(11)             | NO   | PRI | NULL    | auto_increment |
+| phone               | varchar(100)        | NO   |     | NULL    |                |
+| earlyReminderTime   | time                | NO   |     | NULL    |                |
+| primaryResponseTime | time                | NO   |     | NULL    |                |
+| message             | text                | NO   |     | NULL    |                |
+| messagesSent        | tinyint(3) unsigned | NO   |     | 0       |                |
+| nextTime            | time                | NO   |     | NULL    |                |
+| ownerId             | int(11)             | NO   | MUL | NULL    |                |
++---------------------+---------------------+------+-----+---------+----------------+

@@ -1,0 +1,35 @@
+<a href=
+"<?php 
+echo $this->url(array('controller'=>'profile','action'=>'index'),
+                'default',true);
+?>"
+    >Back to Profile</a>
+<br />
+<?php
+    $schedules = $this->schedules;
+    if($schedules != Null){
+        echo "<table border=\"1\" cellpadding=\"10\">";
+    
+        foreach($schedules as $schedule){
+            $scheduleArray = $schedule->toArray();
+            echo "<tr>";
+            foreach($scheduleArray as $info){
+                echo "<td>" . $info . "</td>";
+            }
+            echo "<td>";
+            echo "<a href=/schedule/edit?id=" . $scheduleArray['ownerId'] . "&sid=" . $scheduleArray["id"] . ">";
+            echo "Edit" . "</a>" . "</td>";
+            echo "</tr>";
+        }
+        
+        echo "</table>";
+    }
+?>
+
+<a href=
+"<?php 
+echo $this->url(array('controller'=>'schedule','action'=>'new'),
+                'default',true) . 
+     "?id=" . $this->patient->getId();
+?>"
+    >Add New Schedule</a>

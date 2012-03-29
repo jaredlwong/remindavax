@@ -1,0 +1,102 @@
+* {
+  padding:0;
+  margin:0;
+  font-family: Helvetica,Arial,'DejaVu Sans','Liberation Sans',Freesans,sans-serif;
+}
+
+html {
+  background-color:#EFEFEF;
+}
+
+a:link { color: #0000FF; text-decoration: underline;}
+a:visited { color: #0000FF; text-decoration: underline;}
+a:hover { color: #F00; text-decoration: underline;}
+
+body {
+  width:960px;
+  margin:auto;
+  padding:0 20px;
+  padding-bottom:15px;
+  background-color:white;
+}
+
+#main-content {
+  padding:20px 0;
+}
+
+footer {
+  padding-top:0.5em;
+  border-top:1px solid #C0C0C0;
+}
+
+.cleared-container {
+  overflow: auto;
+  width: 100%
+}
+
+header {
+  border-bottom:1px solid #C0C0C0;
+  font-size:2em;
+}
+header h1 {
+  font-family:'Century Gothic',futura,'URW Gothic L',Verdana,sans-serif;
+  float: left;
+}
+header a {
+  font-size:0.8ex;
+  font-family: Helvetica,Arial,'DejaVu Sans','Liberation Sans',Freesans,sans-serif;
+  float:right;
+  padding-left:10px;
+}
+header #vax {
+  color:#FF0000;
+}
+
+/*#form-login {
+  float:left;
+}
+#form-login * {
+  font-family: Helvetica,Arial,'DejaVu Sans','Liberation Sans',Freesans,sans-serif;
+}
+#form-login input {
+  font-size: 1.5em;
+}
+#form-login label {
+  font-size: 2em;
+}
+#form-login input[type=submit]{
+  width:11em;
+}*/
+
+table {
+  padding:0;
+  width:0;
+  border-collapse:collapse;
+  border:none;
+  width:100%;
+  font-size:14px;
+}
+table * {
+  border:none;
+}
+table tbody tr {
+  border:none;
+  border-bottom:thin solid;
+}
+table td {
+  padding:5px 0;
+}
+table thead {
+  border:none;
+  border-bottom:medium solid;
+}
+
+#main-body-top {
+  padding-bottom:20px;
+}
+
+#button-signup {
+  
+}
+
+

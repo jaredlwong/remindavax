@@ -1,0 +1,16 @@
+<table border="1" cellpadding="10">
+<?php
+    $schedules = $this->schedules;
+    foreach($schedules as $schedule){
+        $scheduleArray = $schedule->toArray();
+        echo "<tr>";
+        foreach($scheduleArray as $info){
+            echo "<td>" . $info . "</td>";
+        }
+        echo "<td>";
+        echo "<a href=/schedule/edit?id=" . $scheduleArray['ownerId'] . "&sid=" . $scheduleArray["id"] . ">";
+        echo "Edit" . "</a>" . "</td>";
+        echo "</tr>";
+    }
+?>
+</table>

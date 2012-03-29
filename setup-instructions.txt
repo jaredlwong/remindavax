@@ -1,0 +1,45 @@
+Must have Intel CPU
+Must have OS X 10.5 or higher
+Install Xcode if you haven't - you can check if you've installed Xcode by seeing if /Developer/Applications/Xcode.app is present (In finder (command + shift + g) then copy '/Developer/Applications/Xcode.app' or (command + space) brings up spotlight type 'xcode' and Xcode should be in the applications section) If Xcode is not installed open 'Install Xcode', alternatively, open '/Applications/Install\ Xcode.app'. Installation will take somewhere in the magnitude of minutes to complete (definitely should not take more than 30, in most cases somewhere around 10).
+
+Next install homebrew for mac:
+http://mxcl.github.com/homebrew/
+https://github.com/mxcl/homebrew/wiki/Installation
+Homebrew is an alternative package manager for mac. Similar to macports, but runs on ruby and is quite transparent. To obtain it, in Terminal.app or any other bash shell (I personally prefer iTerm) run
+>> /usr/bin/ruby -e "$(/usr/bin/curl -fksSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"
+
+Then, to install mysql and php with homebrew. Run:
+>> brew tap josegonzalez/homebrew-php
+>> brew install php --with-mysql
+
+You can now start your mysql server with:
+>> mysql.server start
+or stop it with:
+>> mysql.server stop
+
+Note that mysql is really a server, but this is just like a thing that runs in the background on your computer.
+
+Finally, you need to modify apache settings.
+First set write privileges on httpd.conf (you have to be an admin of your computer and you will have to type your password)
+>> sudo chmod u+w /etc/apache2/httpd.conf
+Then edit the file, you can choose whatever you want, I like vim
+>> sudo vim /etc/apache2/httpd.conf
+Then in vim type as follows:
+/LoadModule php5_module
+(This will bring you to the line you must edit) type:
+i
+(This will bring you into insert mode, you can add/delete) Make the line look like: 
+LoadModule php5_module /usr/local/Cellar/php/5.3.10/libexec/apache2/libphp5.so
+
+Then run:
+>> mysqladmin create remindavax
+>> mysql -u root remindavax < ~/Sites/remindavax/data/remindavax-mysql-backup-3-27-2012.sql
+>> mysql -u root
+This will bring you into your mysql server
+>> 
+
+
+References:
+http://justinhileman.info/article/building-a-lamp-development-environment-on-snow-leopard/
+http://justinhileman.info/article/reinstalling-php-53-on-mac-os-x/
+http://imknight.net/development/setup-lamp-stack-on-mac-os-x-lion/

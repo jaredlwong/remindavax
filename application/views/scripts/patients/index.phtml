@@ -1,0 +1,56 @@
+<h2>Registered Patients</h2>
+<a href=
+"<?php echo $this->url(
+    array('controller'=>'patients','action'=>'new'),
+    'default',true) ?>"
+    >Add New Patient</a>
+<table border="1" cellpadding="10" id="table-patients">
+    <thead>
+        <tr>
+          <td>Name</td>
+          <td>Mobile</td>
+          <td>Email</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </thead>
+<?php
+$patients = $this->patients;
+$patientTable = '<tbody>';
+foreach($patients as $patient){
+    $patientData = $patient->toArray();
+    $patientTable .= "<tr>";
+    
+    $patientTable .= "<td>";
+    $patientTable .= "<a href=/patients/" . $patient->getId() . ">";
+    $patientTable .= $patient->getLastName() . ', ' . $patient->getFirstName();
+    $patientTable .= "</a>";
+    $patientTable .= "</td>";
+    
+    $patientTable .= "<td>";
+    $patientTable .= $patient->getPhone();
+    $patientTable .= "</td>";
+    
+    $patientTable .= "<td>";
+    $patientTable .= $patient->getEmail();
+    $patientTable .= "</td>";
+    
+    $patientTable .= "<td>";
+    $patientTable .= "<a href=/patients/" . $patient->getId() . "/edit>";
+    $patientTable .= 'Edit';
+    $patientTable .= "</a>";
+    $patientTable .= "</td>";
+    
+    $patientTable .= "<td>";
+    $patientTable .= "<a href=/patients/" . $patient->getId() . "/treatments>";
+    $patientTable .= "Treatments" . "</a>" . "</td>";
+    $patientTable .= "</tr>";
+}
+$patientTable .= '</tbody>';
+echo $patientTable;
+?>
+</table>
+
+
+
+<?echo $this->logout?>

@@ -1,0 +1,9 @@
+<?php
+    foreach($this->currentPatients as $patient) {
+        $data = $patient->toArray();
+        foreach($data as $thing => $val) {
+            echo $thing . " " . $val . "<br />";
+        }
+        echo "<br />";
+    }
+?>

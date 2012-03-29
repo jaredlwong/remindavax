@@ -1,0 +1,49 @@
+<?php
+    $user = $this->currentUser;
+    $welcomeString = "Welcome";
+    if( Null !== ($p = $user->getFirstName())) {
+        $welcomeString .= ' ' . $p;
+    }
+    if( Null !== ($p = $user->getLastName())) {
+        $welcomeString .= ' ' . $p;
+    }
+?>
+<h2><?php echo $welcomeString?></h2>
+
+<a href=
+"<?php echo $this->url(
+    array('controller'=>'profile','action'=>'settings'),
+    'default',true) ?>"
+    >Settings</a>
+
+<table border="1" cellpadding="10">
+<?php
+$patients = $this->patients;
+$patientTable = '';
+foreach($patients as $patient){
+    $patientArray = $patient->toArray();
+    $patientTable .= "<tr>";
+    foreach(array_slice($patientArray,1,4) as $info){
+        $patientTable .= "<td>" . $info . "</td>";
+    }
+    $patientTable .= "<td>";
+    $patientTable .= "<a href=/patients/edit?id=" . $patientArray["id"] . ">";
+    $patientTable .= "Edit" . "</a>" . "</td>";
+    
+    $patientTable .= "<td>";
+    $patientTable .= "<a href=/schedule/edit?id=" . $patientArray["id"] . ">";
+    $patientTable .= "Treatments" . "</a>" . "</td>";
+    
+    $patientTable .= "</tr>";
+}
+echo $patientTable;
+?>
+</table>
+
+<a href=
+"<?php echo $this->url(
+    array('controller'=>'patients','action'=>'new'),
+    'default',true) ?>"
+    >Add New Patient</a>
+
+<?echo $this->logout?>

@@ -13,7 +13,7 @@ class LoginController extends Zend_Controller_Action
         if (Zend_Auth::getInstance()->hasIdentity()) {
             $this->_redirect('profile');
         } else { 
-            if ($this->getRequest()->isPost() && 
+            if ($this->getRequest()->isPost() &&
                 $request->getParam('email') != '' &&
                 $request->getParam('password') != ''
             ) {
@@ -35,7 +35,7 @@ class LoginController extends Zend_Controller_Action
         
         $dbAdapter = Zend_Db_Table::getDefaultAdapter();
         $authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
-        $authAdapter->setTableName('MainUsers')
+        $authAdapter->setTableName('Doctors')
                     ->setIdentityColumn('email')
                     ->setCredentialColumn('password');
         

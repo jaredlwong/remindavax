@@ -46,33 +46,33 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         );
 
         $treaments = new Zend_Controller_Router_Route_Regex(
-            'patients/(\d+)/treatments',
+            'patients/(\d+)/prescriptions',
             array(
-                'controller' => 'treatments',
+                'controller' => 'prescriptions',
                 'action' => 'index'
             )
         );
         
-        $treatmentsNew = new Zend_Controller_Router_Route_Regex(
-            'patients/(\d+)/treatments/new',
+        $prescriptionsNew = new Zend_Controller_Router_Route_Regex(
+            'patients/(\d+)/prescriptions/new',
             array(
-                'controller' => 'treatments',
+                'controller' => 'prescriptions',
                 'action' => 'new'
             )
         );
         
-        $treatmentsSummary = new Zend_Controller_Router_Route_Regex(
-            'patients/(\d+)/treatments/(\d+)',
+        $prescriptionsSummary = new Zend_Controller_Router_Route_Regex(
+            'patients/(\d+)/prescriptions/(\d+)',
             array(
-                'controller' => 'treatments',
+                'controller' => 'prescriptions',
                 'action' => 'summary'
             )
         );
         
-        $treatmentsEdit = new Zend_Controller_Router_Route_Regex(
-            'patients/(\d+)/treatments/(\d+)/edit',
+        $prescriptionsEdit = new Zend_Controller_Router_Route_Regex(
+            'patients/(\d+)/prescriptions/(\d+)/edit',
             array(
-                'controller' => 'treatments',
+                'controller' => 'prescriptions',
                 'action' => 'edit'
             )
         );
@@ -80,9 +80,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $router->addRoute('patientProfile', $route);
         $router->addRoute('patientEdit', $patientEdit);
         $router->addRoute('treaments', $treaments);
-        $router->addRoute('treatmentsNew', $treatmentsNew);
-        $router->addRoute('treatmentsSummary', $treatmentsSummary);
-        $router->addRoute('treatmentsEdit', $treatmentsEdit);
+        $router->addRoute('prescriptionsNew', $prescriptionsNew);
+        $router->addRoute('prescriptionsSummary', $prescriptionsSummary);
+        $router->addRoute('prescriptionsEdit', $prescriptionsEdit);
         
         
         

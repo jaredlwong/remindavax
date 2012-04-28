@@ -27,12 +27,12 @@ foreach($patients as $patient){
         $patientTable .= "<td>" . $info . "</td>";
     }
     $patientTable .= "<td>";
-    $patientTable .= "<a href=/patients/edit?id=" . $patientArray["id"] . ">";
+    $patientTable .= "<a href=/patients/" . $patientArray["id"] . "/edit >";
     $patientTable .= "Edit" . "</a>" . "</td>";
     
     $patientTable .= "<td>";
-    $patientTable .= "<a href=/schedule/edit?id=" . $patientArray["id"] . ">";
-    $patientTable .= "Treatments" . "</a>" . "</td>";
+    $patientTable .= "<a href=/patients/". $patientArray["id"] ."/prescriptions" . ">";
+    $patientTable .= "Prescriptions" . "</a>" . "</td>";
     
     $patientTable .= "</tr>";
 }
@@ -46,4 +46,4 @@ echo $patientTable;
     'default',true) ?>"
     >Add New Patient</a>
 
-<?echo $this->logout?>
+<?php echo $this->logout ?>

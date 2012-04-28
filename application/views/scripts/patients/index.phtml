@@ -42,7 +42,7 @@ foreach($patients as $patient){
     $patientTable .= "</td>";
     
     $patientTable .= "<td>";
-    $patientTable .= "<a href=/patients/" . $patient->getId() . "/treatments>";
+    $patientTable .= "<a href=/patients/" . $patient->getId() . "/prescriptions>";
     $patientTable .= "Treatments" . "</a>" . "</td>";
     $patientTable .= "</tr>";
 }
@@ -53,4 +53,4 @@ echo $patientTable;
 
 
 
-<?echo $this->logout?>
+<?php echo $this->logout ?>

@@ -24,7 +24,7 @@ class ProfileController extends Zend_Controller_Action
         $this->view->currentUser = $currentUser;
         
         $PM = new Application_Model_PatientsMapper();
-        $patients = $PM->findByOwnerId($currentUser->getId());
+        $patients = $PM->findByDoctorId($currentUser->getId());
         $this->view->patients = $patients;
         
         $logout = new Application_Form_Logout();
@@ -109,7 +109,7 @@ class ProfileController extends Zend_Controller_Action
     protected function getCurrentUser() {
         $auth = Zend_Auth::getInstance(); 
         $auth_user = $auth->getIdentity();
-        $MUM = new Application_Model_MainUserMapper();
+        $MUM = new Application_Model_DoctorsMapper();
         $user = $MUM->findByEmail($auth_user);
         return $user;
     }
@@ -137,7 +137,7 @@ class ProfileController extends Zend_Controller_Action
         
         $auth = Zend_Auth::getInstance(); 
         $auth_user = $auth->getIdentity();
-        $MUM = new Application_Model_MainUserMapper();
+        $MUM = new Application_Model_DoctorsMapper();
         $user = $MUM->findByEmail($auth_user);
         
         $settingForm = new Application_Form_Settings();
@@ -146,7 +146,7 @@ class ProfileController extends Zend_Controller_Action
         if ($this->getRequest()->isPost()) {
             $formData = $this->getRequest()->getPost();
             if ($settingForm->isValid($formData)) {
-                $MUM = new Application_Model_MainUserMapper();
+                $MUM = new Application_Model_DoctorsMapper();
                 $this->addIntoDatabase($user->getId(),$formData, $MUM);
                 $this->authUser($formData);
             }
@@ -158,7 +158,7 @@ class ProfileController extends Zend_Controller_Action
     protected function addIntoDatabase($uid, $post, $MUM) {
         $idArray = array( "id" => $uid );
         $fulluser = array_merge($idArray,$post );
-        $user = new Application_Model_MainUser($fulluser);
+        $user = new Application_Model_Doctors($fulluser);
         $MUM->save($user);
     }
     
@@ -167,7 +167,7 @@ class ProfileController extends Zend_Controller_Action
         
         $dbAdapter = Zend_Db_Table::getDefaultAdapter();
         $authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
-        $authAdapter->setTableName('MainUsers')
+        $authAdapter->setTableName('Doctors')
                     ->setIdentityColumn('email')
                     ->setCredentialColumn('password');
         

@@ -21,7 +21,7 @@ class SignupController extends Zend_Controller_Action
         if ($this->getRequest()->isPost()) {
             $formData = $this->getRequest()->getPost();
             if ($form->isValid($formData)) {
-                $MUM = new Application_Model_MainUserMapper();
+                $MUM = new Application_Model_DoctorsMapper();
                 if( $MUM->emailExists($formData["email"]) ) {
                     $this->render('emailerror');
                 } else {
@@ -37,7 +37,7 @@ class SignupController extends Zend_Controller_Action
     }
     
     protected function addIntoDatabase($post, $MUM) {
-        $user = new Application_Model_MainUser($post);
+        $user = new Application_Model_Doctors($post);
         if( !$MUM->emailExists($post["email"])) {
             $MUM->save($user);
         }
@@ -49,7 +49,7 @@ class SignupController extends Zend_Controller_Action
         
         $dbAdapter = Zend_Db_Table::getDefaultAdapter();
         $authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
-        $authAdapter->setTableName('MainUsers')
+        $authAdapter->setTableName('Doctors')
                     ->setIdentityColumn('email')
                     ->setCredentialColumn('password');
         

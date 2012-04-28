@@ -8,22 +8,23 @@ class Application_Form_Patient extends Zend_Form
         $firstName  = $this->createElement('text', 'firstName');
         $firstName  ->setRequired(true)
                     ->addErrorMessage("First name required.")
-                    ->setLabel("First Name");
+                    ->setLabel("* First Name");
         
         $lastName   = $this->createElement('text', 'lastName');
         $lastName   ->setRequired(true)
                     ->addErrorMessage("Last name required.")
-                    ->setLabel("Last Name");
+                    ->setLabel("* Last Name");
         
         $phone      = $this->createElement('text', 'phone');
         $phone      ->setRequired(true)
                     ->addErrorMessage("Phone number required.")
-                    ->setLabel("Phone Number");
+                    ->setLabel("* Phone Number");
                  
         $email      = $this->createElement('text', 'email');
         $email      ->addValidator(new Zend_Validate_EmailAddress())
                     ->addErrorMessage("Not a valid email.")
-                    ->setLabel("Email");
+                    ->setLabel("* Email")
+                    ->setRequired(true);
         
         $timeslots = array(
                     '00:00:00' => '12:00 AM','00:30:00' => '12:30 AM',
@@ -69,8 +70,8 @@ class Application_Form_Patient extends Zend_Form
                ->addElement($lastName)
                ->addElement($phone)
                ->addElement($email)
-               ->addElement($earlyReminderTime)
-               ->addElement($primaryResponseTime)
+               // ->addElement($earlyReminderTime)
+               // ->addElement($primaryResponseTime)
                ->addElement('submit', 'schedule', array('label' => 'Update'));
     }
 }

@@ -62,9 +62,9 @@ class Application_Model_PatientsMapper
         return $entries;
     }
     
-    public function findByOwnerId($ownerid) {
+    public function findByDoctorId($doctorId) {
         $table = $this->getDbtable();
-        $selection = $table->select()->where('ownerId = ?', $ownerid);
+        $selection = $table->select()->where('doctorId = ?', $doctorId);
         $resultSet = $table->fetchAll($selection);
         $entries = array();
         foreach ($resultSet as $row) {

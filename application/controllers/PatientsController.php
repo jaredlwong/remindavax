@@ -16,7 +16,7 @@ class PatientsController extends Zend_Controller_Action
         $this->view->currentUser = $currentUser;
         
         $PM = new Application_Model_PatientsMapper();
-        $patients = $PM->findByOwnerId($currentUser->getId());
+        $patients = $PM->findByDoctorId($currentUser->getId());
         $this->view->patients = $patients;
         
         $this->render('index');
@@ -36,7 +36,7 @@ class PatientsController extends Zend_Controller_Action
             $formData = $this->getRequest()->getPost();
             if ($form->isValid($formData)) {
                 $PM = new Application_Model_PatientsMapper();
-                $formData['ownerId'] = $currentUser->getId();
+                $formData['doctorId'] = $currentUser->getId();
                 $user = new Application_Model_Patient($formData);
                 $PM->save($user);
                 $this->_redirect('patients');
@@ -59,7 +59,7 @@ class PatientsController extends Zend_Controller_Action
             $this->_redirect('patients');
         }
         
-        if ($currentUser->getId() != $patient->getOwnerId()) {
+        if ($currentUser->getId() != $patient->getDoctorId()) {
             $this->_redirect('patients');
         }
         
@@ -78,7 +78,7 @@ class PatientsController extends Zend_Controller_Action
             $this->_redirect('patients');
         }
         
-        if ($currentUser->getId() != $patient->getOwnerId()) {
+        if ($currentUser->getId() != $patient->getDoctorId()) {
             $this->_redirect('patients');
         }
         
@@ -92,7 +92,7 @@ class PatientsController extends Zend_Controller_Action
             $postData = $this->getRequest()->getPost();
             if ($form->isValid($postData)) {
                 $PM = new Application_Model_PatientsMapper();
-                $postData['ownerId'] = $currentUser->getId();
+                $postData['doctorId'] = $currentUser->getId();
                 $postData['id'] = $patient->getId();
                 $patient->populate($postData);
                 $PM->save($patient);

@@ -43,7 +43,7 @@ class IndexController extends Zend_Controller_Action
         
         $dbAdapter = Zend_Db_Table::getDefaultAdapter();
         $authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
-        $authAdapter->setTableName('MainUsers')
+        $authAdapter->setTableName('Doctors')
                     ->setIdentityColumn('email')
                     ->setCredentialColumn('password');
         
@@ -58,5 +58,11 @@ class IndexController extends Zend_Controller_Action
         $result = $auth->authenticate($authAdapter);
         return $result;
     }
+    
+    public function logoutAction()
+   {
+       Zend_Auth::getInstance()->clearIdentity();
+       //$this->_redirect('dev/login/index');
+   }
 }
 

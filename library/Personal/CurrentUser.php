@@ -7,7 +7,7 @@ class CurrentUser {
         if( $auth_user == Null) {
             return Null;
         }
-        $MUM = new Application_Model_MainUserMapper();
+        $MUM = new Application_Model_DoctorsMapper();
         $user = $MUM->findByEmail($auth_user);
         return $user;
     }

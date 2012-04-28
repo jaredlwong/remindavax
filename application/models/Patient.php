@@ -1,13 +1,13 @@
 <?php
 class Application_Model_Patient {
     protected $_id;
+    protected $_doctorId;
     protected $_firstName;
     protected $_lastName;
     protected $_phone;
     protected $_email;
-    protected $_earlyReminderTime;
-    protected $_primaryResponseTime;
-    protected $_ownerId;
+    protected $_age;
+    protected $_gender;
 
     public function __construct(array $options = null)
     {
@@ -45,6 +45,17 @@ class Application_Model_Patient {
     
     public function setId($id) {
         $this->_id = (int) $id;
+        return $this;
+    }
+    
+    // Doctor Id
+    public function getDoctorId() 
+    {
+        return $this->_doctorId;
+    }
+    
+    public function setDoctorId($doctorId) {
+        $this->_doctorId = (int) $doctorId;
         return $this;
     }
     
@@ -93,35 +104,24 @@ class Application_Model_Patient {
     }
     
     // Set the Owner ID
-    public function getOwnerId()
+    public function getAge()
     {
-        return $this->_ownerId;
+        return $this->_age;
     }
-    public function setOwnerId($ownerid)
+    public function setAge($age)
     {
-        $this->_ownerId = (string) $ownerid;
+        $this->_age = (int) $age;
         return $this;
     }
     
-    // early reminder time
-    public function getEarlyReminderTime()
+    // Set the Owner ID
+    public function getGender()
     {
-        return $this->_earlyReminderTime;
+        return $this->_gender;
     }
-    public function setEarlyReminderTime($earlyReminderTime)
+    public function setGender($gender)
     {
-        $this->_earlyReminderTime = (string) $earlyReminderTime;
-        return $this;
-    }
-    
-    // primary reponse time
-    public function getPrimaryResponseTime()
-    {
-        return $this->_primaryResponseTime;
-    }
-    public function setPrimaryResponseTime($primaryResponseTime)
-    {
-        $this->_primaryResponseTime = (string) $primaryResponseTime;
+        $this->_gender = (int) $gender;
         return $this;
     }
 }

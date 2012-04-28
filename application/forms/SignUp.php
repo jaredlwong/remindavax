@@ -18,7 +18,8 @@ class Application_Form_SignUp extends Zend_Form
         $lastName->setLabel("Last Name");
         
         $phone = $this->createElement('text', 'phone');
-        $phone->setLabel("Phone Number");
+        $phone->setLabel("* Phone Number")
+              ->setRequired(true);
         
         // Create and configure password elements:
         $frmPassword1 = new Zend_Form_Element_Password('password');

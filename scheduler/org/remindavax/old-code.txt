@@ -1,0 +1,53 @@
+***** Database Parser *****
+    /*public void main(String[] args) {
+    	
+    	Connection conn = null;
+    	Statement patstmt = null;
+    	ResultSet patrs = null;
+    	Statement stmt = null;
+    	ResultSet rs = null;
+    	try {
+    	    conn =
+    	       DriverManager.getConnection("jdbc:mysql://localhost/remindavax?" +
+    	                                   "user=remindavax&password=remindavax!!");
+    	    
+    	    patstmt = conn.createStatement();
+    	    if(patstmt.execute("SELECT `id` FROM Patients")) {
+    	    	patrs = patstmt.getResultSet();
+    	    	while( patrs.next() ) {
+    	    		stmt = conn.createStatement();
+    	    		if (stmt.execute("SELECT * FROM `Schedules` WHERE `ownerId`=" + 
+    	    				patrs.getString("id"))) {
+    	    	        rs = stmt.getResultSet();
+    	    	        while( rs.next() ) {
+    	    	        	System.out.println(isDay(rs));
+    	    	        }
+    	    	    }
+    	    	}
+    	    }
+    	    
+    	} catch (SQLException ex) {
+    	    System.err.println("SQLException: " + ex.getMessage());
+    	    System.err.println("SQLState: " + ex.getSQLState());
+    	    System.err.println("VendorError: " + ex.getErrorCode());
+    	} catch (Exception e) {
+    		System.err.println(e.getMessage());
+    	} finally {
+    	    if (rs != null) {
+    	        try {rs.close();} catch (SQLException sqlEx) { }
+    	        rs = null;
+    	    }
+    	    if (stmt != null) {
+    	        try {stmt.close();} catch (SQLException sqlEx) { }
+    	        stmt = null;
+    	    }
+    	    if (patstmt != null) {
+    	        try {patstmt.close();} catch (SQLException sqlEx) { }
+    	        patstmt = null;
+    	    }
+    	    if (patrs != null) {
+    	        try {patrs.close();} catch (SQLException sqlEx) { }
+    	        patrs = null;
+    	    }
+    	}
+    }*/

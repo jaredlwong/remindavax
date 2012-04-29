@@ -1,0 +1,77 @@
+<h2>Treatments for <?php 
+echo $this->patient->getFirstName() . ' ' . $this->patient->getLastName()
+?></h2>
+
+<a href="<?php
+echo '/patients/' . $this->patient->getId() . '/prescriptions/new';
+?>">Add New Treatment</a>
+<table border="1" cellpadding="10" id="table-prescriptions">
+    <thead>
+        <tr>
+          <td></td>
+          <td>Start Date</td>
+          <td>End Date</td>
+          <td>Days of the Month</td>
+          <td>Months of the Year</td>
+          <td>Days of the Week</td>
+          <td>Treatment</td>
+        </tr>
+      </thead>
+<?php
+$prescriptions = $this->prescriptions;
+$prescriptionsTable = '<tbody>';
+foreach($prescriptions as $prescription){
+    $prescriptionData = $prescription->toArray();
+    unset($prescriptionData['id']);
+    unset($prescriptionData['patientId']);
+    $prescriptionsTable .= "<tr>";
+    
+    $begin = date_parse_from_format("Y-m-d", $prescriptionData['begin']);
+    $prescriptionData['begin'] = $begin['month'] . '/' . $begin['day'] . '/' . $begin['year'];
+    $end = date_parse_from_format("Y-m-d", $prescriptionData['end']);
+    $prescriptionData['end'] = $end['month'] . '/' . $end['day'] . '/' . $end['year'];
+    // $lookup = array('Daily','Weekly','Monthly','Yearly');
+    // $prescriptionData['repeatPeriod'] = $lookup[$prescriptionData['repeatPeriod']];
+    
+    $overview = '<a href=/patients/' . $this->patient->getId() . '/prescriptions/' . $prescription->getId();
+    $overview .= '>Overview</a>';
+    array_unshift($prescriptionData,$overview);
+    
+    $blarg = '<a href=/patients/' . $this->patient->getId() . '/prescriptions/' . $prescription->getId();
+    $blarg .= '/edit>Edit</a>';
+    array_push($prescriptionData,$blarg);
+    
+    $prescriptionsTable .= "<td>";
+        $prescriptionsTable .= $prescriptionData[0];
+    $prescriptionsTable .= "</td>";
+    
+    $prescriptionsTable .= "<td>";
+        $prescriptionsTable .= $prescriptionData['begin'];
+    $prescriptionsTable .= "</td>";
+    
+    $prescriptionsTable .= "<td>";
+        $prescriptionsTable .= $prescriptionData['end'];
+    $prescriptionsTable .= "</td>";
+    
+    $prescriptionsTable .= "<td>";
+        $prescriptionsTable .= $prescriptionData['dom'];
+    $prescriptionsTable .= "</td>";
+    
+    $prescriptionsTable .= "<td>";
+        $prescriptionsTable .= $prescriptionData['mon'];
+    $prescriptionsTable .= "</td>";
+    
+    $prescriptionsTable .= "<td>";
+        $prescriptionsTable .= $prescriptionData['dow'];
+    $prescriptionsTable .= "</td>";
+    
+    $prescriptionsTable .= "<td>";
+        $prescriptionsTable .= 'HIV'; //$prescriptionData['xDrug']
+    $prescriptionsTable .= "</td>";
+    
+    $prescriptionsTable .= "</tr>";
+}
+$prescriptionsTable .= '</tbody>';
+echo $prescriptionsTable;
+?>
+</table>

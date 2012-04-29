@@ -1,0 +1,2 @@
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`remindavax`.<result 2 when explaining filename '#sql-c24_302'>, CONSTRAINT `patient` FOREIGN KEY (`patientId`) REFERENCES `Patients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+Cause: Values already in the table were set to 0, but 0 was an invalid patient id. thus it failed..

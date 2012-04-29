@@ -1,0 +1,55 @@
+## Prescription ##
+Should describe a prescription of a drug for a patient
+Should have enough information to send a message by itself (w/ referenced
+tables included)
+
+id (Int)            => IS unique id of prescription
+
+dom (Varchar)       => IS cron expression of the days of the week this
+                    => prescription needs to be administered
+
+mon (Varchar)       => IS cron expression of the months this
+                    => prescription needs to be administered
+
+year (Varchar)      => IS cron expression of the years this
+                    => prescription needs to be administered
+
+begin (Date)        => IS the first date that this
+                    => prescription needs to be administered
+
+end (Date)          => IS the last date that this
+                    => prescription needs to be administered
+
+xSnotB (Boolean)    => true  (1) IF using a once-a-day summary
+                    => false (0) IF using a reminder preceding upcoming
+                    => prescriptions
+
+xSummaryTime (Time) => IF using a once-a-day summary ~ xSnotB = 1
+                    => THEN IS the time in the day to send the reminder
+
+xBeforeMins (Int)   => IF using a reminder preceding upcoming prescriptions ~
+                    => xSnotB = 0
+                    => THEN IS the number of minutes before the prescription ~
+                    => xMedTime to send the reminder
+                    => ~ xMedTime - xBeforeMins a message will be sent
+
+xMedTime (Time)     => IS time of the day at which the medication needs to be
+                    => taken
+
+xWarningAfterLast (Int)
+                    => IF the patient has not responded by this number of
+                    => minutes after the time of the day at which
+                    => the medication needs to be taken
+                    => THEN a warning reminder will be sent to the patient
+                    
+xEndTime (Time)     => IF the patient has not responded by this time of the
+                    => day to the drug prescription described ~
+                    => IF the patient has not sent the special code to the
+                    => drug prescription described, back to the application,
+                    => by this time of day
+                    => THEN the patient's supers will be notified as they
+                    => specify
+
+xDrug (Int)         => IS the drug which this prescription reminds for
+
+ownerId (Int)       => IS the patient who this prescription belongs to
